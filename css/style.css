@@ -41,7 +41,7 @@ Resource style
   z-index: 3;
 }
 
-.cd-header:after {
+.cd-main-header:after {
   /* clearfix */
   content: "";
   display: table;
