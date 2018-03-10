@@ -1,0 +1,29 @@
+/* demo style */
+
+.cd-nugget-info {
+  display: inline-block;
+  padding: 1em 1.4em 1em;
+  margin-top: 20px;
+  background: #b4d7a8;
+  font-size: 14px;
+  border-radius: .25em;
+  color: #3d3536;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.cd-nugget-info .cd-nugget-info-arrow {
+  fill: #3d3536;
+}
+
+.cd-nugget-info span {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.cd-nugget-info span svg {
+  display: block;
+}
+
+.cd-nugget-info:hover {
+  background: #99a478;
+}

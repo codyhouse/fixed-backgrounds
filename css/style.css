@@ -155,7 +155,7 @@ Resource style
   z-index: 1;
 }
 
-.cd-fixed-bg h1, .cd-fixed-bg h2 {
+.cd-fixed-bg__content, .cd-fixed-bg h2 {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -169,6 +169,9 @@ Resource style
   margin: 0 auto;
   text-align: center;
   font-size: 3rem;
+}
+
+.cd-fixed-bg h1, .cd-fixed-bg h2 {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   color: white;
 }
