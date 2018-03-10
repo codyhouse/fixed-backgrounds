@@ -3,27 +3,20 @@
 Primary style
 
 -------------------------------- */
-html * {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-*, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+html {
+  font-size: 62.5%;
 }
 
 body {
-  font-size: 100%;
+  font-size: 1.6rem;
   font-family: "Roboto", sans-serif;
   color: #3d3536;
   background-color: white;
-}
-
-body, html {
-  /* important */
-  height: 100%;
 }
 
 a {
@@ -33,54 +26,42 @@ a {
 
 /* -------------------------------- 
 
-Modules - reusable parts of our design
+Resource style 
 
 -------------------------------- */
-.cd-container {
-  /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
-  width: 90%;
-  max-width: 768px;
-  margin: 0 auto;
-}
-.cd-container::after {
-  /* clearfix */
-  content: '';
-  display: table;
-  clear: both;
-}
-
-/* -------------------------------- 
-
-Main components 
-
--------------------------------- */
-.cd-header {
+.cd-main-header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 50px;
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  z-index: 2;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 3;
 }
+
 .cd-header:after {
+  /* clearfix */
   content: "";
   display: table;
   clear: both;
 }
-.cd-header #cd-logo {
+
+.cd-main-header__logo {
   float: left;
   margin: 13px 0 0 5%;
 }
-.cd-header #cd-logo img {
+
+.cd-main-header__logo img {
   display: block;
 }
+
 @media only screen and (min-width: 768px) {
-  .cd-header {
+  .cd-main-header {
     height: 70px;
   }
-  .cd-header #cd-logo {
+  .cd-main-header__logo {
     margin: 23px 0 0 5%;
   }
 }
@@ -94,25 +75,24 @@ Main components
   background-size: 44px 44px;
   cursor: pointer;
 }
-.cd-main-nav ul {
+
+.cd-main-nav__list {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   -webkit-transform: translateY(-100%);
-  -moz-transform: translateY(-100%);
-  -ms-transform: translateY(-100%);
-  -o-transform: translateY(-100%);
-  transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
 }
-.cd-main-nav ul.is-visible {
+
+.cd-main-nav__list.cd-main-nav__list--is-visible {
   -webkit-transform: translateY(50px);
-  -moz-transform: translateY(50px);
-  -ms-transform: translateY(50px);
-  -o-transform: translateY(50px);
-  transform: translateY(50px);
+      -ms-transform: translateY(50px);
+          transform: translateY(50px);
 }
-.cd-main-nav a {
+
+.cd-main-nav__list a {
   display: block;
   height: 50px;
   line-height: 50px;
@@ -121,35 +101,35 @@ Main components
   border-top: 1px solid #453c3d;
   color: #8e7d7f;
 }
+
 @media only screen and (min-width: 768px) {
   .cd-main-nav {
+    /* reset style */
     width: auto;
     height: auto;
     background: none;
     cursor: auto;
   }
-  .cd-main-nav ul {
+  .cd-main-nav__list {
+    /* reset style */
     position: static;
     width: auto;
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
     line-height: 70px;
   }
-  .cd-main-nav ul.is-visible {
+  .cd-main-nav__list.cd-main-nav__list--is-visible {
+    /* reset style */
     -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
-    transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
   }
-  .cd-main-nav li {
+  .cd-main-nav__list li {
     display: inline-block;
     margin-left: 1em;
   }
-  .cd-main-nav a {
+  .cd-main-nav__list a {
     display: inline-block;
     height: auto;
     line-height: normal;
@@ -159,29 +139,22 @@ Main components
     color: #3d3536;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 1.4rem;
   }
-  .no-touch .cd-main-nav a:hover {
+  .cd-main-nav__list a:hover {
     color: #99a478;
   }
 }
 
-.cd-main-content {
-  /* you need to assign a min-height to the main content so that the children can inherit it*/
-  height: 100%;
-  position: relative;
-  z-index: 1;
-}
-
 .cd-fixed-bg {
   position: relative;
-  min-height: 100%;
+  min-height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   z-index: 1;
 }
+
 .cd-fixed-bg h1, .cd-fixed-bg h2 {
   position: absolute;
   left: 50%;
@@ -189,42 +162,49 @@ Main components
   bottom: auto;
   right: auto;
   -webkit-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -o-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
   width: 90%;
   max-width: 1170px;
+  margin: 0 auto;
   text-align: center;
-  font-size: 30px;
-  font-size: 1.875rem;
+  font-size: 3rem;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   color: white;
 }
-.cd-fixed-bg.cd-bg-1 {
+
+.cd-fixed-bg.cd-fixed-bg--1 {
   background-image: url("../img/cd-background-1.jpg");
 }
-.cd-fixed-bg.cd-bg-2 {
+
+.cd-fixed-bg.cd-fixed-bg--2 {
   background-image: url("../img/cd-background-2.jpg");
 }
-.cd-fixed-bg.cd-bg-3 {
+
+.cd-fixed-bg.cd-fixed-bg--3 {
   background-image: url("../img/cd-background-3.jpg");
 }
-.cd-fixed-bg.cd-bg-4 {
+
+.cd-fixed-bg.cd-fixed-bg--4 {
   background-image: url("../img/cd-background-4.jpg");
 }
+
 @media only screen and (min-width: 768px) {
   .cd-fixed-bg h1, .cd-fixed-bg h2 {
-    font-size: 36px;
+    font-size: 3.6rem;
   }
 }
+
 @media only screen and (min-width: 1170px) {
-  .cd-fixed-bg {
-    background-attachment: fixed;
-  }
   .cd-fixed-bg h1, .cd-fixed-bg h2 {
-    font-size: 48px;
+    font-size: 4.8rem;
     font-weight: 300;
+  }
+  @supports (background-attachment: fixed) {
+    /* fix bug on IE11 and below */
+    .cd-fixed-bg {
+      background-attachment: fixed;
+    }
   }
 }
 
@@ -233,26 +213,36 @@ Main components
   min-height: 100%;
   padding: 4em 0;
   line-height: 1.6;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   z-index: 2;
 }
-.cd-scrolling-bg.cd-color-1 {
+
+.cd-scrolling-bg.cd-scrolling-bg--color-1 {
   background-color: #3d3536;
   color: #a6989a;
 }
-.cd-scrolling-bg.cd-color-2 {
+
+.cd-scrolling-bg.cd-scrolling-bg--color-2 {
   background-color: #99a478;
   color: #3d3536;
 }
-.cd-scrolling-bg.cd-color-3 {
+
+.cd-scrolling-bg.cd-scrolling-bg--color-3 {
   background-color: #b4d7a8;
   color: #3d3536;
 }
+
+.cd-scrolling-bg__content {
+  width: 90%;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
 @media only screen and (min-width: 768px) {
   .cd-scrolling-bg {
     padding: 8em 0;
-    font-size: 20px;
-    font-size: 1.25rem;
+    font-size: 2rem;
     line-height: 2;
     font-weight: 300;
   }
