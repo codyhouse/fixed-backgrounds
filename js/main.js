@@ -1,4 +1,5 @@
 (function(){
+    // Alternate Fixed & Scroll Backgrounds - by CodyHouse.co
 	// toggle main navigation on mobile
 	var mainNav = document.getElementsByClassName('js-main-nav')[0];
 	if(mainNav) {
