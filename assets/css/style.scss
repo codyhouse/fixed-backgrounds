@@ -1,0 +1,110 @@
+@import '../../../../codyhouse-framework/main/assets/css/_global.scss'; // ⚠️ make sure to import the CodyHouse framework
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700'); // custom font
+
+// --------------------------------
+
+// Alternate Fixed & Scroll Backgrounds - by CodyHouse.co
+
+// --------------------------------
+
+:root {
+  // colors
+  @include defineColorHSL(--cd-color-1, 353, 7%, 22%);  // Mine Shaft
+  @include defineColorHSL(--cd-color-2, 105, 37%, 75%); // Sprout
+  @include defineColorHSL(--cd-color-3, 0, 0%, 100%);   // White
+  
+  // font
+  --font-primary: 'Roboto', sans-serif;
+}
+
+.cd-main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: alpha(var(--cd-color-3), 0.9);
+  box-shadow: var(--shadow-md);
+  z-index: var(--zindex-fixed-element);
+}
+
+.cd-main-header__container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.cd-main-header__logo {
+  a, svg {
+    display: block;
+  }
+}
+
+.cd-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: var(--space-xl) 0;
+  font-size: var(--text-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 2;
+  @include fontSmooth;
+}
+
+.cd-section--bg-fixed {
+  min-height: 100vh;
+  box-shadow: none;
+  z-index: 1;
+
+  .text-component {
+    h1, h2, h3, h4, p, a {
+      color: var(--cd-color-3);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+@include breakpoint(md) {
+  @supports (background-attachment: fixed) { // fix bug on IE11 and below 
+    .cd-section--bg-fixed {
+      background-attachment: fixed;
+    }
+  }
+}
+
+// backgrounds
+.cd-section:nth-child(1) {
+  background-image: url("../img/cd-background-1.jpg");
+}
+
+.cd-section:nth-child(2) {
+  background-color: var(--cd-color-2);
+}
+
+.cd-section:nth-child(3) {
+  background-image: url("../img/cd-background-2.jpg");
+}
+
+.cd-section:nth-child(4),
+.cd-section:nth-child(6) {
+  background-color: var(--cd-color-1);
+
+  .text-component {
+    h1, h2, h3, h4, p, a {
+      color: var(--cd-color-3);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.cd-section:nth-child(5) {
+  background-image: url("../img/cd-background-3.jpg");
+}
+
+.cd-section:nth-child(7) {
+  background-image: url("../img/cd-background-4.jpg");
+}
